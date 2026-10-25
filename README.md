@@ -18,6 +18,7 @@ You against the computer. Click a move, and the computer picks one at random.
  
 - The starting game was written by Mr. Gordon.
 - I asked gemini for help for the wining condition
+- Some help from Mr. Gordon for adding the "again button"
 
 ## Testing
 
@@ -26,4 +27,4 @@ You against the computer. Click a move, and the computer picks one at random.
 |  scissors|water bucket |  tie|
 | rock |  water bucket |  I win |
 | paper |  water bucket |  computer wins |
-
+When I press "again", the game should reset to what it looks like in the begining.

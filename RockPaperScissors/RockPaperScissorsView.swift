@@ -46,9 +46,9 @@ struct RockPaperScissorsView: View {
     
     // Keep track of computer's score
     @State var computerScore: Int = 0
-    
+
     // How many rounds have been played.
-    @State var roundsPlayed: Int = 0
+    @State var roundsPlayed: Int = 0 
     
     // MARK: - Computed properties
     
@@ -172,14 +172,31 @@ struct RockPaperScissorsView: View {
             Text("Rounds played: \(roundsPlayed)")
                 .font(.headline)
                 .foregroundStyle(Color.secondary)
+            
+            Button {
+                startNewGame()
+            } label: {
+                Text("again")
+            }
+
         }
         .padding(32)
         .fontDesign(.rounded)
         // How big the game's window is on the Mac. It can be made taller or wider.
-        .frame(minWidth: 520, minHeight: 640)
+        .frame(minWidth: 520, minHeight: 700)
     }
     
     // MARK: - Functions
+    
+    // Sets everything back to the way it was at the start.
+    func startNewGame() {
+        playerScore = 0
+        computerScore = 0
+        playerMove = "No move yet"
+        playerEmoji = "❓"
+        computerMove = "No move yet"
+        computerEmoji = "❓"
+    }
     
     // The player picked rock.
     func chooseRock() {
