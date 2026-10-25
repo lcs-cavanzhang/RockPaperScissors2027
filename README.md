@@ -19,5 +19,11 @@ You against the computer. Click a move, and the computer picks one at random.
 - The starting game was written by Mr. Gordon.
 - I asked gemini for help for the wining condition
 
+## Testing
 
+| my pick | computer pick | should happen |
+| --- | --- | --- |
+|  scissors|water bucket |  tie|
+| rock |  water bucket |  I win |
+| paper |  water bucket |  computer wins |
 
