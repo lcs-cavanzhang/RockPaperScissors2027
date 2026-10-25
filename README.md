@@ -10,11 +10,14 @@ You against the computer. Click a move, and the computer picks one at random.
  
 ## What I added
  
-- Nothing yet. This list grows as I work on Make It Yours.
+- I added water bucket to the game
+- I showed the score for both the computer and the player
+- I made the wining condition
  
 ## Credits
  
 - The starting game was written by Mr. Gordon.
+- I asked gemini for help for the wining condition
 
 
 
