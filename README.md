@@ -15,12 +15,14 @@ You against the computer. Click a move, and the computer picks one at random.
 - I clarified the wining condition using "if/ else if" simple logic.
 - I added the "play again" button that resets everything.
 - I found an unbalance in the game, becasue water bucket has more wining condition, so I dicided to add fire.
+- I added the current streak and the best streak both for me and the computer. 
  
 ## Credits
  
 - The starting game was written by Mr. Gordon.
-- I asked gemini for a little help for the wining condition
+- I asked gemini for a little help for the wining condition and the streak displaying.
 - Some help from Mr. Gordon for adding the "again button"
+-
 
 ## Testing
 

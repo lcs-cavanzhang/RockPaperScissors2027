@@ -47,9 +47,17 @@ struct RockPaperScissorsView: View {
     
     // Keep track of computer's score
     @State var computerScore: Int = 0
-
+    
     // How many rounds have been played.
     @State var roundsPlayed: Int = 0
+    
+    // Keep track of player's streak
+    @State var playerStreak: Int = 0
+    @State var playerBestStreak: Int = 0
+    
+    // Keep track of computer's streak
+    @State var computerStreak: Int = 0
+    @State var computerBestStreak: Int = 0
     
     // MARK: - Computed properties
     
@@ -102,15 +110,25 @@ struct RockPaperScissorsView: View {
                 .font(.largeTitle)
                 .bold()
             
-            // The player's score
-            Text("Player score is: \(playerScore)")
-                .font(.largeTitle)
-                .bold()
+            // The player's score and streak
+            VStack(spacing: 4) {
+                Text("Player score is: \(playerScore)")
+                    .font(.title2)
+                    .bold()
+                Text("Current streak: \(playerStreak)  |  Best streak: \(playerBestStreak)")
+                    .font(.headline)
+                    .foregroundStyle(Color.secondary)
+            }
             
-            // The computer's score
-            Text("Computer score is: \(computerScore)")
-                .font(.largeTitle)
-                .bold()
+            // The computer's score and streak
+            VStack(spacing: 4) {
+                Text("Computer score is: \(computerScore)")
+                    .font(.title2)
+                    .bold()
+                Text("Current streak: \(computerStreak)  |  Best streak: \(computerBestStreak)")
+                    .font(.headline)
+                    .foregroundStyle(Color.secondary)
+            }
             
             Spacer()
             
@@ -190,7 +208,7 @@ struct RockPaperScissorsView: View {
             } label: {
                 Text("again")
             }
-
+            
         }
         .padding(32)
         .fontDesign(.rounded)
@@ -200,11 +218,36 @@ struct RockPaperScissorsView: View {
     
     // MARK: - Functions
     
+    // Updates the streaks for the player and computer based on whether the player won
+    func updateStreak(won: Bool) {
+        if won == true {
+            // Player won
+            playerStreak += 1
+            computerStreak = 0
+            
+            if playerStreak > playerBestStreak {
+                playerBestStreak = playerStreak
+            }
+        } else {
+            // Computer won
+            computerStreak += 1
+            playerStreak = 0
+            
+            if computerStreak > computerBestStreak {
+                computerBestStreak = computerStreak
+            }
+        }
+    }
+    
     // Sets everything back to the way it was at the start.
     func startNewGame() {
         playerScore = 0
         computerScore = 0
         roundsPlayed = 0
+        playerStreak = 0
+        playerBestStreak = 0
+        computerStreak = 0
+        computerBestStreak = 0
         result = "Let's play!"
         playerMove = "No move yet"
         playerEmoji = "❓"
@@ -281,36 +324,47 @@ struct RockPaperScissorsView: View {
         } else if playerMove == "rock" && computerMove == "scissors" {
             result = "You win!"
             playerScore += 1
+            updateStreak(won: true)
         } else if playerMove == "rock" && computerMove == "fire" {
             result = "You win!"
             playerScore += 1
+            updateStreak(won: true)
         } else if playerMove == "paper" && computerMove == "rock" {
             result = "You win!"
             playerScore += 1
+            updateStreak(won: true)
         } else if playerMove == "paper" && computerMove == "water bucket" {
             result = "You win!"
             playerScore += 1
+            updateStreak(won: true)
         } else if playerMove == "scissors" && computerMove == "paper" {
             result = "You win!"
             playerScore += 1
+            updateStreak(won: true)
         } else if playerMove == "scissors" && computerMove == "water bucket" {
             result = "You win!"
             playerScore += 1
+            updateStreak(won: true)
         } else if playerMove == "water bucket" && computerMove == "fire" {
             result = "You win!"
             playerScore += 1
+            updateStreak(won: true)
         } else if playerMove == "water bucket" && computerMove == "rock" {
             result = "You win!"
             playerScore += 1
+            updateStreak(won: true)
         } else if playerMove == "fire" && computerMove == "paper" {
             result = "You win!"
             playerScore += 1
+            updateStreak(won: true)
         } else if playerMove == "fire" && computerMove == "scissors" {
             result = "You win!"
             playerScore += 1
+            updateStreak(won: true)
         } else {
             result = "Computer wins!"
             computerScore += 1
+            updateStreak(won: false)
         }
     }
 }
