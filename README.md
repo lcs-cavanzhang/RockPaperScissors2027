@@ -37,3 +37,12 @@ You against the computer. Click a move, and the computer picks one at random.
 |  behavior| should happen | did happen |
 | --- | --- | --- |
 |  press the "play again" |  reset everything |reset everything|
+
+| result | what should happen | did happen |
+| --- | --- | --- |
+|  I win |  my current streak plus 1 |my current streak plus 1 |
+|  Computer wins |  computer's current streak plus 1 |  computer's current strak plus 1 |
+| I lost |  My streak resets to zero |My streak resets to zero |
+| Computer lost |  Computer's streak resets to zero |  Computer's streak resets o zero |
+| My current streak is bigger than my best streak |My current streak replace my best streak  |My current streak replace my best streak|
+|  Computer's current streak is bigger than its best streak |Computer's current streak is bigger than its best streak  |Computer's current streak is bigger than its best streak  |
