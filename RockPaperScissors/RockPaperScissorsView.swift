@@ -21,6 +21,7 @@ let rockEmoji: String = "🪨"
 let paperEmoji: String = "📄"
 let scissorsEmoji: String = "✂️"
 let waterBucketEmoji: String = "🪣"
+let fireEmoji: String = "🔥"
 
 // The game itself: what it remembers, what it shows on the screen,
 // and what it does when you click a button.
@@ -48,7 +49,7 @@ struct RockPaperScissorsView: View {
     @State var computerScore: Int = 0
 
     // How many rounds have been played.
-    @State var roundsPlayed: Int = 0 
+    @State var roundsPlayed: Int = 0
     
     // MARK: - Computed properties
     
@@ -56,7 +57,7 @@ struct RockPaperScissorsView: View {
         VStack(spacing: 24) {
             
             // The title at the top of the screen.
-            Text("Rock Paper Scissors Waterbucket")
+            Text("Rock Paper Scissors Waterbucket and Fire")
                 .font(.largeTitle)
                 .bold()
                 .foregroundStyle(Color.teal)
@@ -163,6 +164,17 @@ struct RockPaperScissorsView: View {
                     }
                     .frame(maxWidth: .infinity)
                 }
+                
+                Button {
+                    chooseFire()
+                } label: {
+                    VStack {
+                        Text(fireEmoji)
+                            .font(.system(size: 44))
+                        Text("Fire")
+                    }
+                    .frame(maxWidth: .infinity)
+                }
             }
             .buttonStyle(.bordered)
             .font(.headline)
@@ -192,6 +204,8 @@ struct RockPaperScissorsView: View {
     func startNewGame() {
         playerScore = 0
         computerScore = 0
+        roundsPlayed = 0
+        result = "Let's play!"
         playerMove = "No move yet"
         playerEmoji = "❓"
         computerMove = "No move yet"
@@ -226,11 +240,18 @@ struct RockPaperScissorsView: View {
         playRound()
     }
     
+    // The player picked fire.
+    func chooseFire() {
+        playerMove = "fire"
+        playerEmoji = fireEmoji
+        playRound()
+    }
+    
     // The computer picks its move at random.
     func chooseComputerMove() {
         
-        // Pick 1, 2, 3 or 4. Each number stands for one move.
-        let randomNumber: Int = Int.random(in: 1...4)
+        // Pick 1, 2, 3, 4 or 5. Each number stands for one move.
+        let randomNumber: Int = Int.random(in: 1...5)
         
         if randomNumber == 1 {
             computerMove = "rock"
@@ -241,9 +262,12 @@ struct RockPaperScissorsView: View {
         } else if randomNumber == 3 {
             computerMove = "scissors"
             computerEmoji = scissorsEmoji
-        } else {
+        } else if randomNumber == 4 {
             computerMove = "water bucket"
             computerEmoji = waterBucketEmoji
+        } else {
+            computerMove = "fire"
+            computerEmoji = fireEmoji
         }
     }
     
@@ -254,29 +278,34 @@ struct RockPaperScissorsView: View {
         
         if playerMove == computerMove {
             result = "It's a tie!"
-        } else if playerMove == "water bucket" && computerMove == "scissors" {
-            result = "It's a tie!"
-        } else if playerMove == "scissors" && computerMove == "water bucket" {
-            result = "It's a tie!"
-        } else if playerMove == "water bucket" && computerMove == "paper" {
-            result = "You win!"
-            playerScore += 1
-        } else if playerMove == "rock" && computerMove == "water bucket" {
-            result = "You win!"
-            playerScore += 1
-        } else if playerMove == "water bucket" && computerMove == "rock" {
-            result = "Computer wins!"
-            computerScore += 1
-        } else if playerMove == "paper" && computerMove == "water bucket" {
-            result = "Computer wins!"
-            computerScore += 1
         } else if playerMove == "rock" && computerMove == "scissors" {
+            result = "You win!"
+            playerScore += 1
+        } else if playerMove == "rock" && computerMove == "fire" {
             result = "You win!"
             playerScore += 1
         } else if playerMove == "paper" && computerMove == "rock" {
             result = "You win!"
             playerScore += 1
+        } else if playerMove == "paper" && computerMove == "water bucket" {
+            result = "You win!"
+            playerScore += 1
         } else if playerMove == "scissors" && computerMove == "paper" {
+            result = "You win!"
+            playerScore += 1
+        } else if playerMove == "scissors" && computerMove == "water bucket" {
+            result = "You win!"
+            playerScore += 1
+        } else if playerMove == "water bucket" && computerMove == "fire" {
+            result = "You win!"
+            playerScore += 1
+        } else if playerMove == "water bucket" && computerMove == "rock" {
+            result = "You win!"
+            playerScore += 1
+        } else if playerMove == "fire" && computerMove == "paper" {
+            result = "You win!"
+            playerScore += 1
+        } else if playerMove == "fire" && computerMove == "scissors" {
             result = "You win!"
             playerScore += 1
         } else {
