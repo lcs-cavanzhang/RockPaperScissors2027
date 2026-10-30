@@ -16,6 +16,18 @@ You against the computer. Click a move, and the computer picks one at random.
 - I added the "play again" button that resets everything.
 - I found an unbalance in the game, becasue water bucket has more wining condition, so I dicided to add fire.
 - I added the current streak and the best streak both for me and the computer. 
+
+## How it works
+#### Picking the Winner
+Variables used: playerMove holds the move you picked, and computerMove holds the move the computer picked. Both are String types.
+Operators used: I used == to check if both choices match for a tie, && (AND) to check a player move alongside a computer move, and || (OR) to combine all ten winning combinations into one statement.
+Why I chose || over ten separate else if statements: Instead of typing result = "You win!", playerScore += 1, and updateStreak(won: true) ten separate times in ten different code blocks, combining all winning pairs with || lets me write those winning lines just once. This keeps the code clean and easy to update later.
+
+#### Winning Streaks
+Variables used: playerStreak and computerStreak are Int variables that count how many wins in a row each player has. playerBestStreak and computerBestStreak are Int variables that remember the highest streak reached during the session.
+Function parameter: I wrote a function called updateStreak(won: Bool) that takes a single parameter named won. It receives true when the player wins and false when the computer wins.
+Decision logic: Inside updateStreak, an if / else statement adds 1 to the winner's current streak and resets the loser's streak back to 0. Then, an if statement checks if the new streak is higher than the best streak, and updates it if a new record is set.
+
  
 ## Credits
  
